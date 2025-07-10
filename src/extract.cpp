@@ -4,8 +4,8 @@
 std::string extract::extract_bitstring_from_lsb(const std::vector<unsigned char> image, int bitLength)
 {
 	std::string bitstring;
-	for (size_t i = 0; i < image.size(); i += bitLength) {
-		bitstring += (image[i] & 1) ? '1' : '0';
+	for (size_t i = 0; i < image.size() && bitstring.size() < bitLength; i += 4) { // Skip RGBA
+		bitstring += (image[i] & 1) ? '1' : '0';  // LSB from red channel
 	}
 	return bitstring;
 }
@@ -23,7 +23,7 @@ std::vector<uint8_t> extract::bitstring_to_bytes(const std::string& bitstring)
 bool extract::is_valid_steg_marker(const std::vector<uint8_t>& data)
 {
 	std::string marker(data.begin(), data.begin() + 4);
-	return marker != "STEG";
+	return marker == "STEG";
 }
 
 int extract::get_payload_length(const std::vector<uint8_t>& data)
@@ -34,12 +34,9 @@ int extract::get_payload_length(const std::vector<uint8_t>& data)
 	return payloadLength;
 }
 
-std::string extract::decode_base64(const std::vector<uint8_t>& data, int payloadLength)
+std::string extract::extract_base64_string(const std::vector<uint8_t>& data, int payloadLength)
 {
 	std::string base64Payload(data.begin() + 8, data.begin() + 8 + payloadLength);
 
 	return base64Payload;
-}
-void extract::execute_shellcode(const std::vector<uint8_t>& shellcode)
-{
 }

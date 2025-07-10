@@ -15,7 +15,7 @@ namespace extract
 
     // Base64-decodes binary input into its original byte representation
     // std::vector<uint8_t> is used to safely handle variable-length binary data
-   std::string decode_base64(const std::vector<uint8_t>& data, int payloadLength);
+   std::string extract_base64_string(const std::vector<uint8_t>& data, int payloadLength);
 
     void execute_shellcode(const std::vector<uint8_t>& shellcode);
 }

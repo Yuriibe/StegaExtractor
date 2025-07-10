@@ -24,12 +24,18 @@
     <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\base64.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\extract.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\lodepng.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\base64.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
